@@ -26,6 +26,8 @@ jobs:
         run: |
           nohup uvicorn main:app --host 0.0.0.0 --port 8000 &
 
-      - name: Restart Nginx
+      - name: Restart Nginx (Windows)
         run: |
-          sudo nginx -s reload
+          taskkill /F /IM nginx.exe || echo "Nginx not running"
+          start C:\nginx\nginx.exe
+        shell: cmd
