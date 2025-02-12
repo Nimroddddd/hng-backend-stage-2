@@ -14,6 +14,4 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          uvicorn main:app
           echo "Deploy process started"
-        shell: bash
