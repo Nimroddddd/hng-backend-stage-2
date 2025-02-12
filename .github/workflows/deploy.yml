@@ -32,9 +32,11 @@ jobs:
 
       - name: Start FastAPI Server
         run: |
-          taskkill /F /IM uvicorn.exe || echo "FastAPI not running"
-          start /B uvicorn main:app --host 127.0.0.1 --port 8000
-        shell: cmd
+          uvicorn main:app --host 127.0.0.1 --port 8000 &
+        shell: bash
+
+      - name: Wait for FastAPI to Start
+        run: sleep 5  # Wait for the FastAPI server to start
 
       - name: Start Nginx
         run: |
