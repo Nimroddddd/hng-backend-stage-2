@@ -1,44 +1,19 @@
-name: Deploy FastAPI with Nginx (Windows)
+name: CD Pipeline
 
 on:
   push:
     branches:
-      - main  # Change if using a different branch
+      - main
 
 jobs:
   deploy:
-    runs-on: windows-latest  # Running on a Windows VM
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install Dependencies
+      - name: Deploy to Server
         run: |
-          pip install -r requirements.txt
+          uvicorn main:app
+          echo "Deploy process started"
         shell: bash
-
-      - name: Download and Extract Nginx
-        run: |
-          Invoke-WebRequest -Uri https://nginx.org/download/nginx-1.25.3.zip -OutFile nginx.zip
-          Expand-Archive -Path nginx.zip -DestinationPath C:\nginx
-          move C:\nginx\nginx-1.25.3\* C:\nginx\
-        shell: powershell
-
-      - name: Start FastAPI Server
-        run: |
-          uvicorn main:app --host 127.0.0.1 --port 8000 &
-        shell: bash
-
-      - name: Wait for FastAPI to Start
-        run: sleep 5  # Wait for the FastAPI server to start
-
-      - name: Start Nginx
-        run: |
-          start C:\nginx\nginx.exe
-        shell: cmd
