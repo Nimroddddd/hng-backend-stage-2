@@ -33,7 +33,10 @@ fastapi-book-project/
 │   └── test_books.py       # API endpoint tests
 ├── main.py                 # Application entry point
 ├── requirements.txt        # Project dependencies
-└── README.md
+├── README.md   └
+├── Dockerfile
+└──nginx.conf
+
 ```
 
 ## Technologies Used
@@ -49,8 +52,8 @@ fastapi-book-project/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/hng12-devbotops/fastapi-book-project.git
-cd fastapi-book-project
+git clone https://github.com/Nimroddddd/hng-backend-stage-2.git
+cd hng-backend-stage-2
 ```
 
 2. Create a virtual environment:
