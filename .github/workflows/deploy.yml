@@ -16,7 +16,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           script: |
-            cd fastapi-book-project
+            cd hng-backend-stage-2
             git stash
             git pull origin main
             # Stop existing containers
