@@ -22,4 +22,5 @@ jobs:
             # Stop existing containers
             docker-compose down || true
             docker-compose up -d --build
+            sudo systemctl restart docker
             docker ps
