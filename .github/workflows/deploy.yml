@@ -2,7 +2,7 @@ name: CD - Deploy to AWS
 on:
   push:
     branches:
-      - main #test
+      - main #testt
 jobs:
   deploy:
     runs-on: ubuntu-latest
