@@ -1,0 +1,25 @@
+name: CD - Deploy to AWS
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ubuntu
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          script: |
+            cd hng-backend-stage-2
+            git stash
+            git pull origin main
+            # Stop existing containers
+            docker-compose down || true
+            docker-compose up -d --build
+            docker ps
