@@ -1,5 +1,3 @@
-version: "3.8"  # Specify a valid Compose version
-
 services:
   fastapi-app:
     build: .
